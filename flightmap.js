@@ -15,7 +15,7 @@
 // ============================================
 
 const MAP_CONFIG = {
-    apiBaseUrl: 'http://us1.bot-hosting.net:20591',
+    apiBaseUrl: 'https://us1.bot-hosting.net:20591',
     refreshInterval: 30000,
     defaultCenter: [20, 0],
     defaultZoom: 2,
@@ -85,10 +85,9 @@ function initFlightMap() {
 
     setTimeout(() => flightMap.invalidateSize(), 200);
 
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-        maxZoom: 20,
-        attribution: '© Stadia Maps © OpenMapTiles © OpenStreetMap'
-    }).addTo(flightMap);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
     L.control.attribution({ position: 'bottomright', prefix: '' })
         .addTo(flightMap)
