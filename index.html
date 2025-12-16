@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Age Aviation | Fly the Legends</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS for Flight Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Pro:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+
+<!-- Popup Container -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span id="closePopup" class="close">&times;</span>
+    <h2>Welcome to Golden Age Aviation</h2>
+    <p>Disclaimer,</p>
+
+<p>Golden Age Aviation is a virtual airline for home flight-simulation enthusiasts. It is not a real-world airline, does not operate aircraft, and does not sell or book flights.</p>
+
+
+<p>Golden Age Aviation is a non-commercial hobby community that simulates historical airline operations across multiple carriers, including (but not limited to) Lufthansa (DLH), Air India (AIC), Kingfisher (KFR), Jet Airways (JAI), and Singapore Airlines (SIA). Our aim is to recreate schedules, fleets, and procedures from the “golden age of aviation” as closely as reasonably possible for educational and entertainment purposes.</p>
+
+<p>We are not affiliated with, endorsed by, or sponsored by Lufthansa, Air India, Kingfisher Airlines, Jet Airways, Singapore Airlines, or any of their parent companies, subsidiaries, or partners. All trademarks, service marks, logos, and liveries remain the property of their respective owners. Any real-world references (airline names, aircraft types, routes, logos, imagery) are used for historical simulation and identification only. If a rights holder requests modification or removal of material, we will act promptly.</p>
+
+<p>No commercial activity is conducted via this website/community. Membership is voluntary; participation requires a consumer flight-simulator platform and add-ons chosen by each member. All flight activity is virtual.</p>
+
+<p>For the official airlines, please visit their real-world websites:</p>
+
+<table>
+  <tr>
+    <td>• Lufthansa</td>
+    <td>:-</td>
+    <td><a href="https://www.lufthansa.com/" target="_blank">https://www.lufthansa.com/</a></td>
+  </tr>
+  <tr>
+    <td>• Air India</td>
+    <td>:-</td>
+    <td><a href="https://www.airindia.com/" target="_blank">https://www.airindia.com/</a></td>
+  </tr>
+  <tr>
+    <td>• Kingfisher Airlines</td>
+    <td>:-</td>
+    <td>(defunct; historical reference only)</td>
+  </tr>
+  <tr>
+    <td>• Jet Airways</td>
+    <td>:-</td>
+    <td><a href="https://www.jetairways.com/" target="_blank">https://www.jetairways.com/</a> (relaunch info subject to change)</td>
+  </tr>
+  <tr>
+    <td>• Singapore Airlines</td>
+    <td>:-</td>
+    <td><a href="https://www.singaporeair.com/" target="_blank">https://www.singaporeair.com/</a></td>
+  </tr>
+</table>
+
+<p>If you have questions or rights concerns, please contact: opreations@goldenageaviation.org </p>
+  </div>
+</div>
+
+<!-- Privacy Policy Popup -->
+<div id="privacyPopup" class="popup legal-popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePrivacyPopup()">&times;</span>
+    <h2>Privacy Policy</h2>
+    <p><em>Last Updated: December 2025</em></p>
+
+    <h3>1. Introduction</h3>
+    <p>Golden Age Aviation ("we," "us," or "our") is a non-commercial virtual airline community dedicated to flight simulation enthusiasts. This Privacy Policy explains how we collect, use, and protect your information when you use our website and services.</p>
+    <p><strong>This is a hobby community for flight simulation only. We do not operate real aircraft, sell tickets, or provide any real-world aviation services.</strong></p>
+
+    <h3>2. Information We Collect</h3>
+    <p><strong>Account Information:</strong></p>
+    <ul>
+      <li>Username and display name</li>
+      <li>Email address</li>
+      <li>Discord ID and username</li>
+      <li>Pilot callsign (e.g., GAA0001)</li>
+    </ul>
+    <p><strong>Flight Simulation Data:</strong></p>
+    <ul>
+      <li>SimBrief user ID</li>
+      <li>vAMSYS pilot profile data</li>
+      <li>Flight logs and statistics</li>
+      <li>ACARS data and position reports</li>
+      <li>Simulator type (MSFS, X-Plane, P3D)</li>
+    </ul>
+
+    <h3>3. How We Use Your Information</h3>
+    <p>We use your information to:</p>
+    <ul>
+      <li>Create and manage your pilot account</li>
+      <li>Track and display flight activity on our live flight map</li>
+      <li>Generate flight statistics and leaderboards</li>
+      <li>Communicate community updates and events</li>
+      <li>Ensure compliance with community rules</li>
+    </ul>
+
+    <h3>4. Third-Party Services</h3>
+    <p>Our website integrates with:</p>
+    <ul>
+      <li><strong>vAMSYS</strong> - Pilot accounts and flight tracking</li>
+      <li><strong>SimBrief</strong> - Flight planning integration</li>
+      <li><strong>Discord</strong> - Community communication</li>
+      <li><strong>VATSIM/IVAO/POSCON</strong> - Online flying networks</li>
+    </ul>
+    <p>We recommend reviewing each service's privacy policy.</p>
+
+    <h3>5. Data Storage & Security</h3>
+    <p>Your data is stored on secure servers. Flight data may be displayed publicly on our website. We do not sell your personal information.</p>
+
+    <h3>6. Your Rights</h3>
+    <p>You have the right to access, correct, or delete your data. Contact us at:- <a href="mailto:operations@goldenageaviation.org">operations@goldenageaviation.org</a></p>
+
+    <h3>7. Cookies</h3>
+    <p>Our website may use cookies for session management and analytics. You can disable cookies in your browser settings.</p>
+
+    <h3>8. Changes to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page.</p>
+
+    <h3>9. Contact Us</h3>
+    <p>Email: <a href="mailto:operations@goldenageaviation.org">operations@goldenageaviation.org</a><br>
+    Discord: <a href="https://discord.gg/bHAmUDffKQ">discord.gg/bHAmUDffKQ</a></p>
+  </div>
+</div>
+
+<!-- Terms of Service Popup -->
+<div id="termsPopup" class="popup legal-popup">
+  <div class="popup-content">
+    <span class="close" onclick="closeTermsPopup()">&times;</span>
+    <h2>Terms of Service</h2>
+    <p><em>Last Updated: December 2025</em></p>
+
+    <h3>1. Acceptance of Terms</h3>
+    <p>By using Golden Age Aviation website and services, you agree to these Terms of Service.</p>
+
+    <h3>2. Nature of Service</h3>
+    <p><strong>Golden Age Aviation is a NON-COMMERCIAL virtual airline community for flight simulation.</strong></p>
+    <ul>
+      <li>We are NOT a real airline and do not operate real aircraft</li>
+      <li>We do NOT sell airline tickets or provide real transportation</li>
+      <li>All "flights" are simulated using flight simulation software</li>
+      <li>This is a hobby community run by volunteers</li>
+      <li>No money is charged for membership</li>
+    </ul>
+
+    <h3>3. Eligibility</h3>
+    <p>You must be at least 13 years old and have access to a compatible flight simulator.</p>
+
+    <h3>4. User Accounts</h3>
+    <ul>
+      <li>You are responsible for your account security</li>
+      <li>Provide accurate information during registration</li>
+      <li>Do not share your account or create multiple accounts</li>
+      <li>Pilot IDs are virtual credentials for simulation only</li>
+    </ul>
+
+    <h3>5. Acceptable Use</h3>
+    <p><strong>You agree to:</strong></p>
+    <ul>
+      <li>Treat all community members with respect</li>
+      <li>Follow instructions from staff</li>
+      <li>Report bugs or violations to staff</li>
+    </ul>
+    <p><strong>You agree NOT to:</strong></p>
+    <ul>
+      <li>Harass, threaten, or abuse other members</li>
+      <li>Submit false flight data or manipulate statistics</li>
+      <li>Attempt to hack or disrupt our services</li>
+      <li>Impersonate staff members or other pilots</li>
+    </ul>
+
+    <h3>6. Flight Tracking</h3>
+    <p>By using our flight tracking services, your flight data may be displayed publicly on our live map and leaderboards.</p>
+
+    <h3>7. Third-Party Services</h3>
+    <p>We integrate with vAMSYS, SimBrief, Discord, and online networks. You must comply with each platform's terms of service.</p>
+
+    <h3>8. Disclaimer of Warranties</h3>
+    <p>Our services are provided "AS IS" without warranties. We do not guarantee uninterrupted or error-free service. This is a hobby project maintained by volunteers.</p>
+
+    <h3>9. Limitation of Liability</h3>
+    <p>Golden Age Aviation and its volunteers shall not be liable for any damages arising from your use of our services.</p>
+
+    <h3>10. Termination</h3>
+    <p>We may terminate your access for violation of these terms or disruptive behavior. You may leave the community at any time.</p>
+
+    <h3>11. Changes to Terms</h3>
+    <p>We may modify these terms at any time. Continued use after changes constitutes acceptance.</p>
+
+    <h3>12. Contact</h3>
+    <p>Email: <a href="mailto:opreations@goldenageaviation.org">operations@goldenageaviation.org</a><br>
+    Discord: <a href="https://discord.gg/bHAmUDffKQ">discord.gg/bHAmUDffKQ</a></p>
+  </div>
+</div>
+  
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <div class="logo-emblem">
+                    <img src="Images/GAA LOGO.png" alt="Golden Age Aviation Logo" class="logo-image">
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#liveflights" class="nav-link">Live Flights</a></li>
+                <li><a href="#airlines" class="nav-link">Airlines</a></li>
+                <li><a href="#join" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://vamsys.io/login" class="btn btn-portal">Pilot Portal</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-content">
+            <div class="hero-badge">EST. 2025 • VIRTUAL AIRLINE</div>
+            <h1 class="hero-title">
+                <span class="title-line">Fly the</span>
+                <span class="title-accent">Legends</span>
+            </h1>
+            <p class="hero-subtitle">Experience the golden era of aviation. Pilot legendary aircraft on historic routes that shaped commercial aviation history.</p>
+            <div class="hero-cta">
+                <a href="https://vamsys.io/register" class="btn btn-primary">
+                    <span>Join the Squadron</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#about" class="btn btn-secondary">Discover Our Heritage</a>
+            </div>
+        </div>
+        <!--
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number" data-count="1000">0</span>
+                <span class="stat-label">Pilots</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="70">0</span>
+                <span class="stat-label">Historic Aircraft</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="2500">0</span>
+                <span class="stat-label">Heritage Routes</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Operations</span>
+            </div>
+        </div>
+        -->
+        <div class="scroll-indicator">
+            <span>Scroll to Explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h2 class="section-title">Why Choose Golden Age Aviation?</h2>
+                <p class="section-desc">Step back in time and experience aviation as it was meant to be — elegant, adventurous, and pioneering.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="32" cy="32" r="28"/>
+                            <path d="M32 4v56M4 32h56"/>
+                            <ellipse cx="32" cy="32" rx="12" ry="28"/>
+                        </svg>
+                    </div>
+                    <h3>Authentic Experience</h3>
+                    <p>Fly historically accurate aircraft with period-correct liveries, procedures, and routes from aviation's golden era.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M32 8l6 18h19l-15 11 6 19-16-12-16 12 6-19-15-11h19z"/>
+                        </svg>
+                    </div>
+                    <h3>Living History</h3>
+                    <p>Join a passionate community dedicated to preserving and celebrating the heritage of commercial aviation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="8" y="16" width="48" height="32" rx="4"/>
+                            <path d="M8 28h48M24 28v20M40 28v20"/>
+                        </svg>
+                    </div>
+                    <h3>Base Training</h3>
+                    <p>Base training involves practicing takeoffs and landings at an airport to build real aircraft handling skills before line flying.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M32 8c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24"/>
+                            <path d="M32 8v24l17 17"/>
+                        </svg>
+                    </div>
+                    <h3>Era-Specific Routes</h3>
+                    <p>Fly the routes that made history — from Air India's Queen Of The Skies to Drukair's shortfield whisper-jet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-tag">At Your Service</span>
+                <h2 class="section-title">Experience Excellence</h2>
+                <p class="section-desc">Comprehensive systems designed for the discerning virtual aviator.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3>ACARS System</h3>
+                    <p>Advanced flight tracking with automatic PIREP filing. Compatible with all major flight simulators.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3>Flight Academy</h3>
+                    <p>Comprehensive training program covering aircraft systems, procedures, and era-specific operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3>Route Network</h3>
+                    <p>Historically accurate routes spanning the globe. From regional services to legendary long-haul operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <h3>24/7 Dispatch</h3>
+                    <p>Our dedicated operations team ensures smooth flights around the clock. Full ATC support on VATSIM events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Flight Map Section -->
+    <section class="routes" id="liveflights">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Live Flights</span>
+                <h2 class="section-title">Track Our Pilots</h2>
+                <p class="section-desc">Watch our pilots flying historic routes around the globe in real-time.</p>
+            </div>
+            <div class="live-map-container">
+                <div class="map-content">
+                    <div class="map-wrapper">
+                        <div id="flightMap"></div>
+                        <div class="map-stats">
+                            <div class="map-stat">
+                                <span class="map-stat-number" id="activeFlights">0</span>
+                                <span class="map-stat-label">Active Flights</span>
+                            </div>
+                        </div>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="legend-dot climbing"></span> Climbing</span>
+                            <span class="legend-item"><span class="legend-dot cruising"></span> Cruising</span>
+                            <span class="legend-item"><span class="legend-dot descending"></span> Descending</span>
+                        </div>
+                    </div>
+                    <div id="flightDetailsPanel">
+                        <!-- Flight details will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Airlines Section -->
+    <section class="airlines" id="airlines">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Airlines</span>
+                <h2 class="section-title">Legendary Carriers</h2>
+                <p class="section-desc">Fly under the liveries of aviation's most iconic airlines, from the dawn of commercial flight to the jet age.</p>
+            </div>
+            <div class="airlines-grid">
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/AirIndia.png" alt="Air India">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/Singapore.png" alt="Singapore Airlines">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/lufthansa.png" alt="Lufthansa">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/Lufthansa-CityLine.png" alt="Lufthansa City Line">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/etihad.png" alt="Etihad Airways">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/finnair.png" alt="Finnair">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/jetairways.png" alt="Jet Airways">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src="Images/kingfisher.png" alt="Kingfisher Airlines">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src = "Images/Drukair.png" alt="DrukAir">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src = "Images/continental.png" alt="Continental Airlines">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src = "Images/vistara.png" alt="Vistara">
+                    </div>
+                </div>
+                <div class="airline-card">
+                    <div class="airline-image">
+                        <img src = "Images/icelandair.png" alt="Iceland Air">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Events Section 
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Events</h2>
+                <p class="section-desc">Join our community events and fly with fellow aviation enthusiasts.</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-status upcoming">Upcoming</div>
+                    <time class="event-date">December 15, 2025</time>
+                    <h3>Pan Am Clipper Memorial Flight</h3>
+                    <p>Commemorating the 90th anniversary of Pan Am's Pacific Clipper service. SFO-HNL aboard the Boeing 377.</p>
+                    <a href="#" class="btn btn-outline btn-sm">View Details</a>
+                </div>
+                <div class="event-card live">
+                    <div class="event-status live">Live Now</div>
+                    <time class="event-date">Ongoing</time>
+                    <h3>Transatlantic Challenge</h3>
+                    <p>Complete 10 transatlantic crossings this month on any classic jet for exclusive awards.</p>
+                    <a href="#" class="btn btn-outline btn-sm">Join Now</a>
+                </div>
+                <div class="event-card">
+                    <div class="event-status upcoming">Upcoming</div>
+                    <time class="event-date">December 20, 2025</time>
+                    <h3>New Pilot Orientation</h3>
+                    <p>Welcome flight for new pilots. Group departure from JFK with full ATC coverage on VATSIM.</p>
+                    <a href="#" class="btn btn-outline btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-tag">Our Partners</span>
+                <h2 class="section-title">Flying Together</h2>
+                <p class="section-desc">Partnered with the world's leading virtual aviation networks.</p>
+            </div>
+            <div class="partners-grid">
+                <a href="https://vamsys.io/register/icelandairva" class="partner-logo" target="_blank">
+                    <img src = "Images/Partners/icelandair patner.png" alt = "vIce">
+                </a>
+                <a href="https://vamsys.io/register/etihad10" class="partner-logo" target="_blank">
+                    <img src = "Images/Partners/etihad partner.png" alt = "vEtihad">
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+                <p class="section-desc">Everything you need to know about joining Golden Age Aviation.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is Golden Age Aviation?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Golden Age Aviation is a virtual airline dedicated to recreating the golden era of commercial aviation. We operate historic aircraft on period-accurate routes, celebrating the pioneers of aviation history.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What do I need to join?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You need a flight simulator (MSFS, X-Plane, or P3D), a passion for aviation history, and a willingness to learn. We provide all training and support at no cost. Classic aircraft add-ons are available for free or purchase depending on the aircraft.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is membership free?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Golden Age Aviation is completely free to join and participate in. We are a volunteer-run community of aviation enthusiasts. All training, support, and services are provided without charge.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How much time commitment is required?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>That's entirely up to you. We have no minimum flight hour requirements. Fly when you want, as often as you want. Some pilots fly daily, others monthly. We're here whenever you're ready to take to the skies.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Where can I find historic aircraft add-ons?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We maintain a comprehensive list of recommended aircraft add-ons in our pilot portal. Many excellent freeware options exist alongside payware. Our community is happy to help you find the perfect aircraft for your simulator.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can we fly on VATSIM/IVAO?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We encourage flying on online networks and organize regular group flights with full ATC coverage. Flying online is optional but adds greatly to the experience. We support VATSIM, IVAO, and POSCON.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="join">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="section-header left">
+                        <span class="section-tag">Contact Us</span>
+                        <h2 class="section-title">Get In Touch</h2>
+                        <p class="contact-section-desc">Have questions? We'd love to hear from you. Reach out and a member of our crew will assist you shortly.</p>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:operations@goldenageaviation.org">operations@goldenageaviation.org</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Support Hours</span>
+                            <span>Discord: 24/7 • Email: Within 2 working days</span>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://discord.gg/bHAmUDffKQ" class="discord-icon" target="_blank">
+                        <!-- Discord SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 240">
+                                <path fill="currentColor" d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.6-11.1-10.2-11.1z"/>
+                                <path fill="currentColor" d="M189.5 20h-134C44.2 20 35 29.2 35 40.5v134c0 11.3 9.2 20.5 20.5 20.5h113.3l-5.3-18.5 12.8 11.8 12.1 11.1 21.4 19V40.5c0-11.3-9.2-20.5-20.3-20.5zm-39.7 135s-3.7-4.4-6.8-8.3c13.5-3.8 18.6-12.1 18.6-12.1-4.2 2.8-8.2 4.7-11.8 6-.5.2-1 .4-1.5.6-5 2-9.8 3.3-14.5 4.1-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.6-14.7-4.1-.7-.3-1.4-.5-2-.8-1.3-.5-2.6-1.1-3.8-1.7-.2-.1-.3-.1-.5-.2-.1-.1-.2-.1-.3-.2-1.5-.8-2.3-1.3-2.3-1.3s5 8.1 18.3 12c-3.1 3.9-6.9 8.5-6.9 8.5-22.8-.7-31.5-15.7-31.5-15.7 0-33.3 14.9-60.3 14.9-60.3 14.9-11.1 29.1-10.8 29.1-10.8l1 1.2c-18.6 5.3-27.2 13.3-27.2 13.3s2.3-1.3 6.2-3c11.3-4.9 20.3-6.2 24-6.6.6-.1 1.1-.2 1.7-.2 6-.8 12.8-1 20-.2 9.4 1.1 19.5 3.9 29.8 9.6 0 0-8.2-7.8-25.8-13.1l1.4-1.6s14.2-.3 29.1 10.8c0 0 14.9 27 14.9 60.3 0 .1-8.7 15.1-31.5 15.8z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/gaa_virtual?igsh=MXNoeW1iMTMyMnRpZw==" class="insta-icon" target="_blank">
+                            <!-- Instagram SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="Images/GAA LOGO.png" alt="Golden Age Aviation Logo" class="logo-image">
+                    </div>
+                    <p>Golden Age Aviation is a flight simulation community dedicated to preserving and celebrating the heritage of commercial aviation's finest era.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#airlines">Airlines</a></li>
+                            <li><a href="#liveflights">Live Flights</a></li>
+                            <li><a href="#join">Join Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="https://discord.gg/bHAmUDffKQ">Discord</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#" onclick="openPrivacyPopup(); return false;">Privacy Policy</a></li>
+                            <li><a href="#" onclick="openTermsPopup(); return false;">Terms of Service</a></li>
+                            <li><a href="mailto:operations@goldenageaviation.org">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Golden Age Aviation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Main Scripts -->
+    <script src="script.js"></script>
+    <!-- Flight Map -->
+    <script src="flightmap.js"></script>
+</body>
+</html>
