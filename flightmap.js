@@ -15,7 +15,7 @@
 // ============================================
 
 const MAP_CONFIG = {
-    apiBaseUrl: 'http://localhost:5000',
+    apiBaseUrl: 'http://us1.bot-hosting.net:20591',
     refreshInterval: 30000,
     defaultCenter: [20, 0],
     defaultZoom: 2,
@@ -25,7 +25,7 @@ const MAP_CONFIG = {
     fitBoundsPadding: [50, 50],
     zoomDuration: 0.8,
     panDuration: 0.5,
-    debug: true
+    debug: false
 };
 
 const FLIGHT_PHASES = {
