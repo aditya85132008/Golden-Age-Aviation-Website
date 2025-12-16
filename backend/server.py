@@ -38,12 +38,14 @@ PORT = int(os.environ.get("PORT", 5000))
 HOST = os.environ.get("HOST", "0.0.0.0")
 
 # CORS origins
+# CORS origins
 ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "")
 if ALLOWED_ORIGINS:
     ALLOWED_ORIGINS = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 else:
+    # Render production default: allow all (restrict via env var)
     ALLOWED_ORIGINS = "*"
-
+    
 # vAMSYS API endpoint
 VAMSYS_FLIGHT_MAP_URL = "https://vamsys.io/api/v3/operations/flight-map"
 
@@ -472,5 +474,10 @@ def initialize():
 
 initialize()
 
+# Only initialize when running directly (not via gunicorn)
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    initialize()
+    app.run(host=HOST, port=PORT, debug=DEBUG)
+else:
+    # Gunicorn/Render entry point
+    initialize()
