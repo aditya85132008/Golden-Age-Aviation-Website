@@ -87,7 +87,7 @@ function initFlightMap() {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+    }).addTo(flightMap);
 
     L.control.attribution({ position: 'bottomright', prefix: '' })
         .addTo(flightMap)
