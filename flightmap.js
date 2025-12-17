@@ -106,10 +106,16 @@ function initFlightMap() {
 // ============================================
 // DATA LOADING
 // ============================================
-
 async function loadFlightData() {
+   console.log(
+      "[FlightMap] FETCHING:",
+      "https://api.goldenageaviation.org/api/flights"
+   );
+   
     try {
-        const response = await fetch(`${MAP_CONFIG.apiBaseUrl}/api/flights`)
+        const response = await fetch(
+           "https://api.goldenageaviation.org/api/flights",
+           {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         });
@@ -289,7 +295,6 @@ function addAircraftMarker(flight, location) {
 // ============================================
 // FLIGHT SELECTION & ZOOM
 // ============================================
-
 async function selectFlight(flight) {
     const bookingId = flight.bookingId;
     if (selectedFlightId === bookingId) return;
@@ -423,7 +428,9 @@ async function drawFlightRoute(flight) {
         const lookupId = vaPilotId || pilotId;
         debugLog(`Fetching route for: ${lookupId}`);
         
-        const response = await fetch(`${MAP_CONFIG.apiBaseUrl}/api/flight-route/${lookupId}?${params}`);
+        const response = await fetch(
+           `https://api.goldenageaviation.org/api/flight-route/${lookupId}?${params}`
+        );
         
         if (!response.ok) throw new Error(`${response.status}`);
         
