@@ -108,7 +108,7 @@ function initFlightMap() {
 
 async function loadFlightData() {
     try {
-        const response = await fetch("/api/flights", {
+        const response = await fetch("api/flights", {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         });
