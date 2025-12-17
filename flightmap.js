@@ -15,7 +15,7 @@
 // ============================================
 
 const MAP_CONFIG = {
-    apiBaseUrl: "https://api.goldenageaviation.org/",
+    apiBaseUrl: "https://golden-age-aviation.onrender.com",
     refreshInterval: 30000,
     defaultCenter: [20, 0],
     defaultZoom: 2,
