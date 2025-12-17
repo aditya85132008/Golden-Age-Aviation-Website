@@ -15,7 +15,6 @@
 // ============================================
 
 const MAP_CONFIG = {
-    apiBaseUrl: "https://api.goldenageaviation.org/",
     refreshInterval: 30000,
     defaultCenter: [20, 0],
     defaultZoom: 2,
@@ -109,7 +108,7 @@ function initFlightMap() {
 
 async function loadFlightData() {
     try {
-        const response = await fetch(`${MAP_CONFIG.apiBaseUrl}/api/flights`, {
+        const response = await fetch("/api/flights", {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         });
