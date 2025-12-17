@@ -1,0 +1,48 @@
+# ============================================================================
+# GOLDEN AGE AVIATION - Git Ignore
+# ============================================================================
+# Files and folders that should NEVER be uploaded to GitHub
+# ============================================================================
+
+# Environment variables (contains secrets!)
+.env
+*.env
+.env.*
+!.env.example
+
+# Token storage
+vamsys_token.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Node (if using any)
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
